@@ -8,7 +8,7 @@
 
   <groupId>de.smartics.maven.plugin</groupId>
   <artifactId>smartics-jboss-modules-maven-plugin</artifactId>
-  <version>2.1.6-SNAPSHOT</version>
+  <version>2.1.5.1-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>${project.artifactId}</name>
@@ -91,17 +91,24 @@
    -->
 
   <scm>
-    <connection>
-      scm:git:git@github.com:smartics/smartics-jboss-modules-maven-plugin
-    </connection>
-    <developerConnection>
-      scm:git:git@github.com:smartics/smartics-jboss-modules-maven-plugin
-    </developerConnection>
+    <connection>scm:git:git@github.com:jboss-fuse/smartics-jboss-modules-maven-plugin</connection>
+    <developerConnection>scm:git:git@github.com:jboss-fuse/smartics-jboss-modules-maven-plugin</developerConnection>
     <url>https://github.com/smartics/smartics-jboss-modules-maven-plugin</url>
     <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
+    <repository>
+        <id>jboss-releases-repository</id>
+        <name>JBoss Releases Repository</name>
+        <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+        <id>jboss-snapshots-repository</id>
+        <name>JBoss Snapshots Repository</name>
+        <url>https://repository.jboss.org/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <!--      
     <snapshotRepository>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -113,10 +120,9 @@
     <site>
       <id>${info.project.visibility}-site</id>
       <name>documentation site</name>
-      <url>
-        ${build.server.site.upload}/${project.groupId}/${project.artifactId}/${project.version}
-      </url>
+      <url>${build.server.site.upload}/${project.groupId}/${project.artifactId}/${project.version}</url>
     </site>
+    -->
   </distributionManagement>
 
   <properties>
@@ -434,7 +440,6 @@
           <configuration>
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
-            <goals>deploy site-deploy</goals>
           </configuration>
         </plugin>
         <plugin>
@@ -451,14 +456,14 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>${version.maven-project-info-reports-plugin}</version>
         </plugin>
-
+        <!--
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>${version.maven-site-plugin}</version>
           <dependencies>
             <dependency>
-              <!-- add support for ssh/scp -->
+              <!- - add support for ssh/scp - ->
               <groupId>org.apache.maven.wagon</groupId>
               <artifactId>wagon-ssh</artifactId>
               <version>2.10</version>
@@ -477,6 +482,7 @@
             <relativizeDecorationLinks>false</relativizeDecorationLinks>
           </configuration>
         </plugin>
+        -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
@@ -887,7 +893,7 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
+          <!--  plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>${version.maven-javadoc-plugin}</version>
@@ -899,7 +905,7 @@
                 </goals>
               </execution>
             </executions>
-          </plugin>
+          </plugin -->
           <plugin>
             <artifactId>maven-deploy-plugin</artifactId>
             <version>${version.maven-deploy-plugin}</version>
